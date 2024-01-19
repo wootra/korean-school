@@ -1,0 +1,3 @@
+from os import environ
+SQLALCHEMY_DATABASE_URI = environ.get('VERCEL_POSTGRES_URL')
+SQLALCHEMY_TRACK_MODIFICATIONS = False

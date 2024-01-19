@@ -1,0 +1,43 @@
+.searchBar {
+    display: flex;
+    height: 100%;
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+    position: relative;
+    &:before {
+        content: '';
+        position: absolute;
+        inset-inline: -1rem;
+        inset-block: 0;
+        background-color: white;
+        z-index: -2;
+    }
+    & .searchDrawer {
+        transition: top 500ms ease-in-out, opacity 250ms ease-in;
+        user-select: none;
+        pointer-events: none;
+        position: absolute;
+        inset-inline: -1rem;
+        height: 100%;
+        top: 0;
+        opacity: 0;
+        padding-inline: 1rem;
+        z-index: -3;
+        padding-block: 0.5rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.searchBar:focus-within,
+.searchDrawer:focus-within {
+    & .searchDrawer {
+        transition: top 500ms ease-in-out, opacity 250ms 250ms ease-out;
+        user-select: text;
+        pointer-events: all;
+        top: 100%;
+        opacity: 1;
+    }
+}

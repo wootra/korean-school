@@ -1,0 +1,108 @@
+.item {
+    --carousel-height: 20rem;
+    --image-height: 30rem;
+    --fontSize: clamp(2rem, 5vw, 5rem);
+
+    height: var(--carousel-height);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    & .hoverArea {
+        position: absolute;
+        inset-inline: 2rem;
+        height: 100%;
+        top: 0;
+    }
+
+    .carouselImage {
+        position: absolute;
+        right: -10rem;
+        bottom: -10rem;
+        height: 30rem;
+        rotate: -20deg;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    & :global(.active) {
+        box-shadow: -40px 40px 40px rgba(0, 0, 0, 0.5);
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+        object-fit: cover;
+    }
+
+    .carouselImageBack {
+        opacity: 0.3;
+        filter: blur(3px);
+        z-index: 0;
+        height: 50rem;
+        bottom: -15rem;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .initTitle {
+        position: absolute;
+        top: calc(var(--carousel-height) / 2);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: var(--fontSize);
+        color: white;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 20;
+        pointer-events: none;
+        user-select: none;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .details {
+        position: absolute;
+        top: var(--carousel-height);
+        left: 0;
+        width: calc(100% - var(--image-height));
+        min-width: min(30rem, 100%);
+        height: 0;
+        border-radius: 1rem 1rem 0 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        /* display: flex; */
+        /* justify-content: space-between; */
+        /* align-items: center; */
+        padding-inline: 2rem;
+        padding-block: 1rem;
+        z-index: 10;
+        /* pointer-events: none; */
+        user-select: none;
+        transition: all 0.5s ease-in-out;
+        & > * {
+            overflow-y: auto;
+            width: 100%;
+            height: 100%;
+            padding-top: 1rem;
+        }
+    }
+
+    .hoverArea:hover {
+        & :global(.active) {
+            rotate: 0deg;
+            bottom: 0;
+            right: 2rem;
+            opacity: 1;
+            height: 20rem;
+            scale: 0.9;
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.798);
+        }
+        & .initTitle {
+            left: 2rem;
+            top: 2rem;
+            transform: translate(0, 0);
+        }
+        & .details {
+            top: calc(var(--fontSize) + 2rem - 0.3rem);
+            height: calc(
+                var(--carousel-height) - var(--fontSize) - 2rem + 0.3rem
+            );
+        }
+    }
+}

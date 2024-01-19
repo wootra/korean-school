@@ -1,0 +1,55 @@
+nav {
+    font-family: 'Montserrat', sans-serif;
+    & > .active {
+        margin-bottom: -1rem;
+    }
+
+    --nav-duration: 0.2s;
+    --bottom-line: 3px;
+    --bottom-line-color: red;
+
+    & a {
+        position: relative;
+        color: transparent;
+        & > span {
+            position: absolute;
+            color: white;
+            inset-inline: -1rem;
+            text-align: center;
+            height: 100%;
+            top: 0;
+            padding-bottom: auto;
+            transition: top var(--nav-duration) ease-in;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            inset-inline: -0.5rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+            bottom: 100%;
+            top: 0;
+            background: transparent;
+            transition: bottom var(--nav-duration) ease-in,
+                background var(--nav-duration) ease-in;
+        }
+    }
+    & a[aria-current='page'] {
+        & > span {
+            font-weight: 900;
+            font-style: bold;
+            top: 1rem;
+        }
+        &::after {
+            bottom: 0rem;
+            background: linear-gradient(
+                to bottom,
+                var(--red-link-background) 0%,
+                var(--red-link-background) calc(100% - var(--bottom-line)),
+                var(--bottom-line-color) calc(100% - var(--bottom-line)),
+                var(--bottom-line-color) 100%
+            );
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+    }
+}

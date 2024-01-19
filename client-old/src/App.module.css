@@ -1,0 +1,13 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    > main {
+        > :global(.layout) {
+            padding-inline: 1rem;
+            margin-inline: auto;
+            max-width: 800px;
+        }
+    }
+}
